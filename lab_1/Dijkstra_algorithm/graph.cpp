@@ -175,6 +175,7 @@ int Graph::size(){
 
 void Graph::printGraph(){
 
+    std::cout << std::endl;
     std::cout << std::setw(5) << "" << "  ";
     for(auto i = 0; i < matrix.size(); i++){
         std::cout << std::setw(5) << node_names[i].toStdString() << "  ";
