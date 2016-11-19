@@ -12,9 +12,9 @@ Third line - of B node, and so on.
 
 
 **Run example:**
-
+```
 GraphShortestWay.exe graph_folder/my_graph.txt A G Dijkstra
-
+```
 A and G - are names of nodes, Dijkstra - is name of used algorithm
 
 **Names of aviable algorithms:**
