@@ -1,7 +1,7 @@
 QT += core
 QT -= gui
 
-TARGET = Branch_and_bound
+TARGET = GraphShortestWay
 CONFIG += console
 CONFIG -= app_bundle
 
