@@ -1,17 +1,15 @@
 
 #include <orl_algorithms.h>
-#include <QMap>
 #include <limits>
 #include <algorithm>
 
+namespace {
+
 struct Node {
-    int index; // index in graph
+    int index;    // index in graph
     double score; // lower score    
 
-    Node(){
-        index = 0;
-        score = 0;
-    }
+    Node(){ }
 
     Node(int index, double score){
         this->index = index;
@@ -36,18 +34,24 @@ void getNeighbourNodes(Node& current_node, orl::Graph& g, QVector<Node>& next_no
 
 void restoreShortestWay(int start, int end, QVector<int>& way_map, QVector<int>& shortest_way)
 {
-    shortest_way.push_back(end);
-    for(auto i = 0; i < way_map.size(); i++){
-        if(shortest_way.back() == start)
+    for(auto i = end; i != start; i = way_map[i]){
+        if(i >= 0){
+            shortest_way.push_back(i);
+        }
+        else {
+            shortest_way.clear();
             return;
-        shortest_way.push_back(way_map[shortest_way.back()]);
+        }
     }
+    shortest_way.push_back(start);
+    std::reverse(shortest_way.begin(), shortest_way.end());
 }
 
+}
 void orl::branchBoundShortestWay(Graph &graph, int start_node, int end_node, QVector<int> &shortest_way)
 {
     QVector<double> records(graph.size(), std::numeric_limits<double>::infinity());
-    QVector<int> way_map(graph.size(), 0);
+    QVector<int> way_map(graph.size(), -1);
     QVector<Node> next_nodes;
 
     records[start_node] = 0.0;

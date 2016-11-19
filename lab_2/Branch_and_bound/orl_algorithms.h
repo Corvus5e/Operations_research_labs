@@ -6,6 +6,8 @@
 namespace orl {
 
     void branchBoundShortestWay(orl::Graph& graph, int start_node, int end_node, QVector<int>& way);
+
+    void dijkstraShortestWay(orl::Graph& graph, int start_node, int end_node, QVector<int>& way);
 }
 #endif // GRAPH_ALGORITHMS
 
