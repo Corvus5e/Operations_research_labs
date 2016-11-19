@@ -19,5 +19,5 @@ A and G - are names of nodes, Dijkstra - is name of used algorithm
 
 **Names of aviable algorithms:**
 
-Dijkstra         - Dijkstra algorithm
-Branch_and_bound - Branch and bound algorithm
+Dijkstra         - Dijkstra algorithm <br />
+Branch_and_bound - Branch and bound algorithm <br />
