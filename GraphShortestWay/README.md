@@ -5,16 +5,7 @@ Graph is read from a file. Graph is stored as adjacency matrix.
 **File's structure**
 Each row describes connections of one node with others. Every value separated by TAB. If there are no connection between nodes, any not number symbol  is placed. First line  - are names of nodes, separated by TAB.
 
-Example of file(my_graph.txt):
-
-A	B	C	D	E	F	G
--	2	4	5	-	-	-
--	-	1	-	5	12	-
--	-	-	-	-	9	18
--	-	-	-	-	-	8
--	-	-	-	-	4	-
--	-	-	-	-	-	1
--	-	-	-	-	-	-
+Example of file [main_task.txt](https://github.com/Corvus5e/Operations_research_labs/blob/master/GraphShortestWay/graphs/main_task.txt)
 
 Second line describes A node's connections.
 Third line - of B node, and so on.
