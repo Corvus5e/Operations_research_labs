@@ -1,4 +1,4 @@
-h2 Program finds the shortest way in a graph between two nodes. 
+Program finds the shortest way in a graph between two nodes. 
 ----------------------------------------------------------------
 Graph is read from a file. Graph is stored as adjacency matrix.
 
