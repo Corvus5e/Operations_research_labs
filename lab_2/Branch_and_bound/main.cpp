@@ -14,8 +14,11 @@ int main(int argc, char *argv[])
         g.printGraph();
 
         QVector<int> shortest_way;
-        orl::branchBoundShortestWay(g, 1, 1, shortest_way);
-        std::cout << shortest_way.back() << std::endl;
+        orl::branchBoundShortestWay(g, g.nodeIndex("A"), g.nodeIndex("G"), shortest_way);
+
+        for(auto i = 0 ; i < shortest_way.size(); i++){
+            std::cout << g.nodeName(shortest_way[i]).toStdString() << " <-- ";
+        }
 
     }
     catch(std::exception& e){
