@@ -1,0 +1,5 @@
+MAX_WEIGHT 90
+Name	Weight	Price	Number
+1	24	960	10
+2	19	500	10
+3	16	250	10

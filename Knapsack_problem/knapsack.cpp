@@ -6,6 +6,7 @@
 #include <exception>
 #include <iostream>
 #include <iomanip>
+#include <utility>
 
 void orl::readTask(const QString& file, double &max_weight, QVector<item> &items)
 {
@@ -65,4 +66,53 @@ void orl::printTask(const double &max_weight, const QVector<item> &items)
         std::cout << std::setw(5) << it->number << " " << std::endl;
     }
     std::cout << std::endl;
+}
+
+void restoreItemIndexes(int item, int weight, const QVector<QVector<int>>& prices, QVector<int>& items_number, const QVector<orl::item>& items, QVector<std::pair<int, int>>& items_indexes)
+{
+    if(prices[item][weight] == 0)
+        return;
+
+    if(prices[item-1][weight] == prices[item][weight]){
+        restoreItemIndexes(item-1, weight, prices, items_number, items, items_indexes);
+    }
+    else{
+        restoreItemIndexes(item-1, weight - items[item-1].weight*items_number[item-1], prices, items_number, items, items_indexes);
+        items_indexes.push_back(std::make_pair(item-1, items_number[item-1]));
+
+    }
+}
+
+int orl::findBestKnapsack(const QVector<item> &items, int max_weight, QVector<std::pair<int, int>>& items_indexes)
+{
+    int items_rows = items.size() + 1;
+
+    QVector<QVector<int>> prices(items_rows); // shoud be zero line
+
+    // construct matrix of prices
+    for(auto i = 0; i < items_rows; i++){
+        prices[i].resize(max_weight + 1);
+    }
+
+    //stores number of each item, that have been put into knapsack
+    QVector<int> items_number(items.size(), 1);
+
+    // Bounded knapsack solving
+    for(auto i = 1; i < items_rows; i++){
+        const item& curr_item = items[i-1];
+        for(auto c = 1; c <= max_weight; c++){
+            prices[i][c] = prices[i-1][c];
+            for(int l = std::min(curr_item.number, c/curr_item.weight); l >= 1; l--){
+                int new_price = prices[i-1][c-l*curr_item.weight] + l*curr_item.price;
+                if( new_price > prices[i][c]){
+                    prices[i][c] = new_price;
+                    items_number[i-1] = l;
+                }
+            }
+        }
+    }
+
+    restoreItemIndexes(items_rows-1, max_weight, prices, items_number, items, items_indexes);
+
+    return prices[items_rows-1][max_weight];
 }

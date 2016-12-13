@@ -5,4 +5,4 @@ Name	Weight	Price	Number
 3	11	15	1
 4	12	20	1
 5	16	27	1
-6	20	34	1
+6	20	35	1
